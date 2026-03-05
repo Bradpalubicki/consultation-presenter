@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { z } from 'zod'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+
 
 const schema = z.object({
   patientName: z.string().min(1),
@@ -63,6 +63,7 @@ export async function POST(req: Request) {
     const body = await req.json()
     const data = schema.parse(body)
 
+    const resend = new Resend(process.env.RESEND_API_KEY ?? "")
     await resend.emails.send({
       from: `${data.providerName} <noreply@nustack.digital>`,
       to: data.patientEmail,
