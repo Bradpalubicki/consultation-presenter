@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Consultation Presenter — NuStack
 
-## Getting Started
+AI-powered chairside consultation tool. Show patients what matters, get faster decisions.
 
-First, run the development server:
+## What It Does
+
+- **Procedure Library** — Multi-industry (dental, salon, cosmetic surgery, landscaping)
+- **Chairside Presenter** — Fullscreen dark-mode patient-facing view: Overview, How It Works, Benefits, Aftercare, FAQ
+- **Patient Pack** — Auto-emails branded consultation summary via Resend after session
+- **Session Tracking** — All sessions logged with timestamps
+- **Consent-ready** — Flags procedures requiring consent; integrates with consent-engine
+
+## Quick Start
 
 ```bash
+npm install
+cp .env.local .env.local.bak
+# Fill in Clerk, Supabase, Resend, Anthropic keys in .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Env Vars
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Description |
+|----------|-------------|
+| NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY | Clerk public key |
+| CLERK_SECRET_KEY | Clerk secret |
+| NEXT_PUBLIC_SUPABASE_URL | Supabase URL |
+| NEXT_PUBLIC_SUPABASE_ANON_KEY | Supabase anon key |
+| ANTHROPIC_API_KEY | Claude API key |
+| RESEND_API_KEY | Resend email key |
+| NEXT_PUBLIC_INDUSTRY | dental, salon, cosmetic, or landscaping |
+| NEXT_PUBLIC_PRACTICE_NAME | Your practice name |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Roadmap
 
-## Learn More
+- [ ] Phase 2: Claude-generated dynamic AI explainers per procedure
+- [ ] Phase 3: Hairgen.ai-style visual treatment simulator (hair transplant, cosmetic)
+- [ ] Phase 4: Voice AI consultation notes (Whisper + Claude summary)
+- [ ] Phase 5: Consent-engine token-based e-sign integration
+- [ ] Phase 6: Cherry financing CTA on patient pack
 
-To learn more about Next.js, take a look at the following resources:
+## Connect to Engines
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Embed in ak-dental-website, littleroots-studio, or any engine:
+- Deploy standalone, link from dashboard
+- Patient pack API: POST /api/patient-pack from any engine
