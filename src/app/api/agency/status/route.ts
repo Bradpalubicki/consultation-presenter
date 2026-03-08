@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 // Consultation Presenter — chairside sales tool. Mostly static with AI generation.
 export async function GET(req: NextRequest) {
-  const secret = process.env.AGENCY_SECRET;
+  const secret = process.env.AGENCY_SNAPSHOT_SECRET;
   const auth = req.headers.get('authorization');
   if (!secret || auth !== `Bearer ${secret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
